@@ -16,6 +16,9 @@ set -o vi
 # Source util functions
 source ~/utils/up.sh
 
+# Source app environment variables
+source ~/utils/.env
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
