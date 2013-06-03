@@ -77,3 +77,6 @@ let vimclojure#HighlightBuiltins=1
 " Rainbow parens FTW
 let vimclojure#ParenRainbow=1
 
+" Syntax highlighting for SCSS
+au BufRead,BufNewFile *.scss set filetype=scss
+
