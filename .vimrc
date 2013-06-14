@@ -57,9 +57,10 @@ nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 " Use %% magic to open files in the same dir as the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" Remap split screen
+" Remap split screens
 noremap WW <C-w>v
 noremap WD <C-w>w
+noremap WS <C-w>s
 noremap WE <C-w>q
 
 " Remap <Esc>
