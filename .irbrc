@@ -35,6 +35,15 @@ def c
   system 'clear'
 end
 
+# Copy/paste to clipboard
+def copy(str)
+  IO.popen('pbcopy', 'w') { |f| f << str.to_s }
+end
+
+def paste
+  `pbpaste`
+end
+
 # Check for balanced parens & brackets
 def validate_string(string)
   stack  = []
