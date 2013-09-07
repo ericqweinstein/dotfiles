@@ -22,6 +22,11 @@ source ~/utils/.env
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# Tune Ruby 1.9.3 GC for faster RSpec suites
+export RUBY_HEAP_MIN_SLOTS=2000000
+export RUBY_HEAP_FREE_MIN=20000
+export RUBY_GC_MALLOC_LIMIT=100000000
+
 # Aliases
 alias ls="ls -p"
 alias l="ls -p"
