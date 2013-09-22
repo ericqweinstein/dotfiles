@@ -73,3 +73,10 @@ class Object
   end
 end
 
+# For when we need to explicitly call bash (instead of default sh)
+def bash(command)
+  require 'shellwords'
+  escaped_command = Shellwords.escape(command)
+  system "bash -c #{escaped_command}"
+end
+
