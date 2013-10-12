@@ -9,6 +9,9 @@ Pry.prompt = [
   proc { "    \e[0;31m| \e[0;34m" }
 ]
 
+# Set Pry color scheme
+Pry.config.theme = 'railscasts'
+
 # Default hash and array for testing
 HASH = {
   :bob => 'Marley', :mom => 'Barley',
