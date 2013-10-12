@@ -20,7 +20,6 @@ HASH = {
 ARRAY = HASH.keys unless defined?(ARRAY)
 
 # Aliases for pry-debugger commands
-Pry.commands.alias_command 'c', 'continue'
 Pry.commands.alias_command 's', 'step'
 Pry.commands.alias_command 'n', 'next'
 
