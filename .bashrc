@@ -37,4 +37,5 @@ alias c="clear"
 alias u="cd .. ;"
 alias back="cd - ;"
 alias cl="c; l;"
+alias hku="heroku"
 
