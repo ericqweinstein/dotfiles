@@ -81,3 +81,6 @@ let vimclojure#ParenRainbow=1
 " Syntax highlighting for SCSS
 au BufRead,BufNewFile *.scss set filetype=scss
 
+" Syntax highlighting for .ru files
+au BufRead,BufNewFile *.ru set filetype=ruby
+
