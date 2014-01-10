@@ -72,6 +72,10 @@ inoremap ii =>
 " Tomorrow Night Bright color scheme
 colorscheme Tomorrow-Night-Bright
 
+" Trailing whitespace is an error
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 " Highlight Clojure's builtins
 let vimclojure#HighlightBuiltins=1
 
