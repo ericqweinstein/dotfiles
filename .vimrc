@@ -57,6 +57,10 @@ autocmd BufReadPost *
   \   exe "normal g`\"" |
   \ endif
 
+" Automatically map `tt` to run
+" rspec on the current test file
+map tt :!rspec --color "%:t"<CR>
+
 " Show line numbers
 set number
 
@@ -117,6 +121,7 @@ au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.ru set filetype=ruby
 au BufRead,BufNewFile *.pryrc set filetype=ruby
 au BufRead,BufNewFile *.rake set filetype=ruby
+au Bufread,BufNewFile *.cr set filetype=ruby
 
 " Highlight Clojure's builtins
 let vimclojure#HighlightBuiltins=1
@@ -127,14 +132,14 @@ let vimclojure#ParenRainbow=1
 " Same syntax for ClojureScript as for Clojure
 au BufRead,BufNewFile *.cljs set filetype=clojure
 
-" Same syntax for ES6 as JS
-au BufRead,BufNewFile *.es6 set filetype=javascript
-
 " Syntax highlighting for Markdown files
 au Bufread,BufNewFile *.md set filetype=markdown
 
 " Syntax highlighting for Arduino
 au Bufread,BufNewFile *.ino set filetype=cpp
+
+" Same syntax for Idris as for Haskell
+" au Bufread,BufNewFile *.idr set filetype=haskell
 
 " Automatically open quickfix window if ShellCheck
 " finds any problems with my shell scripts
