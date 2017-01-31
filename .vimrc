@@ -123,6 +123,9 @@ au BufRead,BufNewFile *.pryrc set filetype=ruby
 au BufRead,BufNewFile *.rake set filetype=ruby
 au Bufread,BufNewFile *.cr set filetype=ruby
 
+" Make replacing :foo => 'bar' with foo: 'bar' easier
+:map HR :%s/:\([^=,'"]*\) =>/\1:/gc
+
 " Highlight Clojure's builtins
 let vimclojure#HighlightBuiltins=1
 
@@ -138,8 +141,8 @@ au Bufread,BufNewFile *.md set filetype=markdown
 " Syntax highlighting for Arduino
 au Bufread,BufNewFile *.ino set filetype=cpp
 
-" Same syntax for Idris as for Haskell
-" au Bufread,BufNewFile *.idr set filetype=haskell
+" Same syntax for TypeScript as for JavaScript
+au Bufread,BufNewFile *.ts set filetype=javascript
 
 " Automatically open quickfix window if ShellCheck
 " finds any problems with my shell scripts
