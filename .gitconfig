@@ -19,9 +19,9 @@
   aa = add --all
   cob = checkout -b
   lop = branch -D
+  mom = merge origin/master
+  sync = merge upstream/master
   unstage = reset HEAD --
-  bulldoze = push --force
 
 [credential]
   helper = osxkeychain
-
