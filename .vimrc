@@ -1,7 +1,16 @@
+" Pathogen FTW (for plugin management)
+execute pathogen#infect()
+
+" Filetype detection
+filetype plugin indent on
+
+" Syntax highlighting
+syntax on
+
 " Vim > Vi
 set nocompatible
 
-" Why isn't this default
+" Hide abandoned buffers rather than unload them
 set hidden
 
 " Better command-line completion
@@ -9,9 +18,6 @@ set wildmenu
 
 " Let Vim use the system clipboard
 set clipboard=autoselect
-
-" Pathogen FTW
-execute pathogen#infect()
 
 " Tabs, &c
 set tabstop=2
@@ -21,54 +27,13 @@ set expandtab
 " Path magicks
 set path=$PWD/**
 
-" Trailing whitespace is an error
-match ErrorMsg '\s\+$'
-
 " Indentation
 set smartindent
 set autoindent
 set cindent
-filetype plugin indent on
-
-" Show & use tabs if there are any
-if filereadable(bufname("%"))
-  for line in readfile(bufname("%"), '')
-    if line =~ '\t'
-      au Bufread,BufNewFile * set list
-      au Bufread,BufNewFile * set noexpandtab
-    endif
-  endfor
-endif
-
-" Indent if we're at the beginning of a line.
-" Otherwise, autocomplete! (Stolen from Gary Bernhardt)
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
-
-" Jump to the last line we were on when
-" we last looked at the current file
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
-
-" Automatically map `tt` to run
-" rspec on the current test file
-map tt :!rspec --color "%:t"<CR>
 
 " Show line numbers
 set number
-
-" Syntax highlighting
-syntax on
 
 " Use case-insensitive search, except when using caps
 set ignorecase
@@ -99,6 +64,39 @@ let mapleader = ','
 set hlsearch
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 
+" Trailing whitespace is an error
+match ErrorMsg '\s\+$'
+
+" Show & use tabs if there are any (mostly so I can destroy them)
+if filereadable(bufname("%"))
+  for line in readfile(bufname("%"), '')
+    if line =~ '\t'
+      au Bufread,BufNewFile * set list
+      au Bufread,BufNewFile * set noexpandtab
+    endif
+  endfor
+endif
+
+" Indent if we're at the beginning of a line.
+" Otherwise, autocomplete! (Stolen from Gary Bernhardt)
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+" Jump to the last line we were on when
+" we last looked at the current file
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
 " Remap split screens
 noremap WW <C-w>v
 noremap WD <C-w>w
@@ -108,8 +106,15 @@ noremap WE <C-w>q
 " Remap <Esc>
 inoremap jj <Esc>
 
+" Automatically map `tt` to run
+" rspec on the current test file
+map tt :!rspec --color "%:t"<CR>
+
 " Open NERDTree with mm
 map mm :NERDTreeToggle<CR>
+
+" Fix NERDTree delimiter on macos
+let g:NERDTreeNodeDelimiter = "\u00a0"
 
 " Use ee for EasyMotion
 let g:EasyMotion_leader_key = 'ee'
