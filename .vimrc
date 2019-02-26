@@ -18,6 +18,9 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" Path magicks
+set path=$PWD/**
+
 " Trailing whitespace is an error
 match ErrorMsg '\s\+$'
 
@@ -148,3 +151,6 @@ au Bufread,BufNewFile *.ts set filetype=javascript
 " finds any problems with my shell scripts
 au QuickFixCmdPost [^l]* nested cwindow
 au QuickFixCmdPost    l* nested lwindow
+
+" Fuzzy finder via Homebrew
+set rtp+=/usr/local/opt/fzf
