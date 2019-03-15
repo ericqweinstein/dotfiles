@@ -159,3 +159,8 @@ au QuickFixCmdPost    l* nested lwindow
 
 " Fuzzy finder via Homebrew
 set rtp+=/usr/local/opt/fzf
+
+" Ale linting (TODO: RuboCop -> Standard)
+let g:ale_linters = {'ruby': ['rubocop']}
+let g:ale_fixers = {'ruby': ['rubocop']}
+let g:ale_fix_on_save = 1
