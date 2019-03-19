@@ -1,4 +1,4 @@
-alias ls "exa -la"
+alias ls "exa -lah"
 alias l "ls"
 alias c "clear"
 alias u "cd .."
