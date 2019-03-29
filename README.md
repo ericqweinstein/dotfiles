@@ -1,4 +1,7 @@
-The colors, Duke! The colors!
+Dotfiles
+========
 
-![the colors](http://cl.ly/image/1V1v3r0V043o/prompt.png)
+These are my dotfiles! Feel free to steal whatever you find here.
+
+![terminal](terminal.png)
 
