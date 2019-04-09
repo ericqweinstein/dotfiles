@@ -8,3 +8,5 @@ alias tree "tree -C"
 
 set -x PATH "$HOME/.rbenv/bin" $PATH
 . (rbenv init - | psub)
+
+set fish_greeting ""
