@@ -1,73 +1,74 @@
-" Pathogen FTW (for plugin management)
+" Pathogen for plugin management.
+" (https://github.com/tpope/vim-pathogen)
 execute pathogen#infect()
 
-" Filetype detection
+" Filetype detection.
 filetype plugin indent on
 
-" Syntax highlighting
+" Syntax highlighting.
 syntax on
 
-" Vim > Vi
+" Prefer Vim to Vi.
 set nocompatible
 
-" Hide abandoned buffers rather than unload them
+" Hide abandoned buffers rather than unload them.
 set hidden
 
-" Better command-line completion
+" Better command-line completion.
 set wildmenu
 
-" Let Vim use the system clipboard
+" Let Vim use the system clipboard.
 set clipboard=autoselect
 
-" Tabs, &c
+" Tabs, &c.
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" Path magicks
+" Path magicks.
 set path=$PWD/**
 
-" Indentation
+" Indentation.
 set smartindent
 set autoindent
 set cindent
 
-" Show line numbers
+" Show line numbers.
 set number
 
-" Use case-insensitive search, except when using caps
+" Use case-insensitive search, except when using caps.
 set ignorecase
 set smartcase
 
-" Allow backspacing over autoindent / line breaks / start of insert action
+" Allow backspacing over autoindent / line breaks / start of insert action.
 set backspace=indent,eol,start
 
-" Raise dialogue instead of failing command
+" Raise dialogue instead of failing command.
 set confirm
 
-" Less cowbell
+" Less cowbell!
 set visualbell
 
-" Show the matching bracket for the last {
+" Show the matching bracket for the last {.
 set showmatch
 
-" Treat HTML tags like { and (
+" Treat HTML tags like { and (.
 set matchpairs+=<:>
 
-" 256 colors
+" 256 colors.
 set t_Co=256
 
-" Remap leader
+" Remap leader.
 let mapleader = ','
 
-" Highlighted search
+" Highlighted search.
 set hlsearch
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 
-" Trailing whitespace is an error
+" Trailing whitespace is an error!
 match ErrorMsg '\s\+$'
 
-" Show & use tabs if there are any (mostly so I can destroy them)
+" Show & use tabs if there are any (mostly so I can destroy them).
 if filereadable(bufname("%"))
   for line in readfile(bufname("%"), '')
     if line =~ '\t'
@@ -79,6 +80,7 @@ endif
 
 " Indent if we're at the beginning of a line.
 " Otherwise, autocomplete! (Stolen from Gary Bernhardt)
+" (https://github.com/garybernhardt/dotfiles/blob/master/.vimrc)
 function! InsertTabWrapper()
   let col = col('.') - 1
   if !col || getline('.')[col - 1] !~ '\k'
@@ -91,76 +93,78 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
 " Jump to the last line we were on when
-" we last looked at the current file
+" we last looked at the current file.
+" (See `:help last-position-jump` for more info.)
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal g`\"" |
   \ endif
 
-" Remap split screens
+" Remap split screens.
 noremap WW <C-w>v
 noremap WD <C-w>w
 noremap WS <C-w>s
 noremap WE <C-w>q
 
-" Remap <Esc>
+" Remap <Esc>.
 inoremap jj <Esc>
 
 " Automatically map `tt` to run
-" rspec on the current test file
+" rspec on the current test file.
 map tt :!rspec --color "%:t"<CR>
 
-" Open NERDTree with mm
+" Open NERDTree with `mm`. (This is
+" one of the few Vim plugins I use;
+" the other are Ale and vim-fugitive
+" for Git magicks.)
 map mm :NERDTreeToggle<CR>
 
-" Fix NERDTree delimiter on macos
+" Fix NERDTree delimiter on macos.
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
-" Use ee for EasyMotion
-let g:EasyMotion_leader_key = 'ee'
-
-" Tomorrow Night Bright color scheme
+" Tomorrow Night Bright color scheme.
 colorscheme Tomorrow-Night-Bright
 
-" Syntax highlighting for SCSS
+" Syntax highlighting for SCSS.
 au BufRead,BufNewFile *.scss set filetype=scss
 
-" Syntax highlighting for Ruby-ish things
+" Syntax highlighting for Ruby-ish things.
 au BufRead,BufNewFile *.ru set filetype=ruby
 au BufRead,BufNewFile *.pryrc set filetype=ruby
 au BufRead,BufNewFile *.rake set filetype=ruby
 au Bufread,BufNewFile *.cr set filetype=ruby
 
-" Make replacing :foo => 'bar' with foo: 'bar' easier
+" Make replacing :foo => 'bar' with foo: 'bar' easier.
 :map HR :%s/:\([^=,'"]*\) =>/\1:/gc
 
-" Highlight Clojure's builtins
+" Highlight Clojure's builtins.
 let vimclojure#HighlightBuiltins=1
 
-" Rainbow parens FTW
+" Rainbow parens FTW.
 let vimclojure#ParenRainbow=1
 
-" Same syntax for ClojureScript as for Clojure
+" Same syntax for ClojureScript as for Clojure.
 au BufRead,BufNewFile *.cljs set filetype=clojure
 
-" Syntax highlighting for Markdown files
+" Syntax highlighting for Markdown files.
 au Bufread,BufNewFile *.md set filetype=markdown
 
-" Syntax highlighting for Arduino
+" Syntax highlighting for Arduino.
 au Bufread,BufNewFile *.ino set filetype=cpp
 
-" Same syntax for TypeScript as for JavaScript
+" Same syntax for TypeScript as for JavaScript.
 au Bufread,BufNewFile *.ts set filetype=javascript
 
 " Automatically open quickfix window if ShellCheck
-" finds any problems with my shell scripts
+" finds any problems with my shell scripts.
 au QuickFixCmdPost [^l]* nested cwindow
 au QuickFixCmdPost    l* nested lwindow
 
-" Fuzzy finder via Homebrew
+" Fuzzy finder via Homebrew.
 set rtp+=/usr/local/opt/fzf
+nnoremap <Leader>t :FZF<CR>
 
-" Ale linting (TODO: RuboCop -> Standard)
+" Ale linting (TODO: RuboCop -> Standard).
 let g:ale_linters = {'ruby': ['rubocop']}
 let g:ale_fixers = {'ruby': ['rubocop']}
 let g:ale_fix_on_save = 1
