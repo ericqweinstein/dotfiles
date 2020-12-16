@@ -40,6 +40,9 @@ set number
 set ignorecase
 set smartcase
 
+" Show incremental results during typing.
+set incsearch
+
 " Allow backspacing over autoindent / line breaks / start of insert action.
 set backspace=indent,eol,start
 
@@ -48,6 +51,9 @@ set confirm
 
 " Less cowbell!
 set visualbell
+
+" No swapfiles!
+set noswapfile
 
 " Show the matching bracket for the last {.
 set showmatch
